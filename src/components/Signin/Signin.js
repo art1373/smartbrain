@@ -18,8 +18,7 @@ class Signin extends React.Component {
   }
   
   onSubmitSignIn= () =>{
-    const host = 'http://'+ window.location.hostname + ':3001/';
-    fetch(host + 'signin', {
+     fetch('https://damp-meadow-81110.herokuapp.com/signin', {
       method:'post',
       headers: {'content-type': 'application/json'},
       body: JSON.stringify({

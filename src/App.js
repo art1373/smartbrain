@@ -78,7 +78,7 @@ class App extends Component {
 
 onButtonSubmit = () => {
   this.setState({imageUrl: this.state.input});
-      fetch('https://damp-meadow-81110.herokuapp.com//imageurl', {
+      fetch('https://damp-meadow-81110.herokuapp.com/imageurl', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
