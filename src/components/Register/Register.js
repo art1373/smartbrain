@@ -8,7 +8,8 @@ class Register extends React.Component {
     this.state = {
       email:'',
       password:'',
-      name:''
+      name:'',
+      isLoading:false
     }
   }
   onNameChange = (event) =>{
@@ -21,6 +22,7 @@ class Register extends React.Component {
     this.setState({password: event.target.value})
   }
   onSubmitSignIn= () =>{
+    this.setState({isLoading: true})
      fetch('https://damp-meadow-81110.herokuapp.com/register', {
       method:'post',
       headers: {'content-type': 'application/json'},
@@ -40,6 +42,7 @@ class Register extends React.Component {
   }
 
   render() {
+    const {isLoading} = this.state;
   return(
   <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center sign">
   <main className="pa4 black-80">
@@ -82,7 +85,7 @@ class Register extends React.Component {
       onClick={this.onSubmitSignIn} 
       className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
       type="submit" 
-      value="Register" 
+      value={!isLoading ? "Register" : "Registering ....."} 
       />
     </div>
 

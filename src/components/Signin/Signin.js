@@ -7,7 +7,8 @@ class Signin extends React.Component {
     super(props);
     this.state = {
       signInEmail:'',
-      signInPassword:''
+      signInPassword:'',
+      isLoading:false
     }
   }
   onEmailChange = (event) =>{
@@ -18,6 +19,7 @@ class Signin extends React.Component {
   }
   
   onSubmitSignIn= () =>{
+    this.setState({isLoading : true})
      fetch('https://damp-meadow-81110.herokuapp.com/signin', {
       method:'post',
       headers: {'content-type': 'application/json'},
@@ -36,6 +38,7 @@ class Signin extends React.Component {
   }
   render() {
       const {onRouteChange} = this.props;
+      const {isLoading} = this.state;
       return(
     <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center sign">
     <main className="pa4 black-80">
@@ -66,7 +69,7 @@ class Signin extends React.Component {
       <div className="">
         <input 
         onClick={this.onSubmitSignIn}
-        className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Sign in" />
+        className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value={isLoading ? "Loading..." : "Sign in"} />
       </div>
       <div className="lh-copy mt3">
         <p onClick={ () => onRouteChange('register')} className="f4 link dim pointer black db">Register</p>
